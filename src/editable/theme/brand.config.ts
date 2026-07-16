@@ -13,7 +13,13 @@ export const slot4BrandConfig = {
   productKind,
   ogImage: siteIdentity.ogImage,
   accents: {
-    primary: '#d32323',
+    primary: '#001e2c',
+    warm: '#fc6736',
     surface: '#ffffff',
+  },
+  labels: {
+    sbm: 'Finds · Curators',
+    sbmSingular: 'Find',
+    tagline: 'Curated finds · Handpicked links',
   },
 } as const
