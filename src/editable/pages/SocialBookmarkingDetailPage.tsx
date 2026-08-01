@@ -83,8 +83,7 @@ export function SocialBookmarkingDetailView({ post, related }: { post: SitePost;
   const domain = url ? cleanDomain(url) : ''
   const collection = getField(post, ['category']) || post.tags?.[0] || 'General'
   const curator = getField(post, ['curator', 'author', 'submittedBy']) || SITE_CONFIG.name
-  const tagList = (post.tags || []).slice(0, 8)
-  const idNum = String((stableHash(post.slug || post.id || post.title || 'x') % 900) + 100)
+const idNum = String((stableHash(post.slug || post.id || post.title || 'x') % 900) + 100)
   const container = 'mx-auto w-full max-w-[77.5rem] px-6 md:px-8 lg:px-12'
   const body = getBody(post)
   const wordCount = body.replace(/<[^>]+>/g, ' ').trim().split(/\s+/).filter(Boolean).length
@@ -154,16 +153,7 @@ export function SocialBookmarkingDetailView({ post, related }: { post: SitePost;
                     <p className="mt-5 text-[11px] font-semibold uppercase tracking-[0.24em] text-[#fc6736]">{collection}</p>
                     <h2 className="editable-display mt-2 text-xl font-bold leading-snug tracking-[-0.02em] text-[#001e2c]">{post.title}</h2>
                     {domain ? <p className="mt-2 truncate text-sm text-[#535353]">{domain}</p> : null}
-                    {url ? (
-                      <a
-                        href={url}
-                        target="_blank"
-                        rel="noopener noreferrer nofollow"
-                        className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#001e2c] px-5 py-3 text-sm font-semibold text-white transition-transform duration-300 hover:-translate-y-0.5"
-                      >
-                        Open the link <ExternalLink className="h-4 w-4" />
-                      </a>
-                    ) : null}
+                    {url ? <p className="mt-4 text-sm text-[#535353]">{url}</p> : null}
                   </div>
                 </div>
 
@@ -206,37 +196,12 @@ export function SocialBookmarkingDetailView({ post, related }: { post: SitePost;
                   dangerouslySetInnerHTML={{ __html: formatPlainText(body) }}
                 />
 
-                {tagList.length ? (
-                  <div className="mt-14 border-t border-[#001e2c1a] pt-8">
-                    <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-[#535353]">Also filed under</p>
-                    <div className="mt-4 flex flex-wrap gap-2">
-                      {tagList.map((tag) => (
-                        <Link
-                          key={tag}
-                          href={`/sbm?category=${encodeURIComponent(tag.toLowerCase().replace(/[^a-z0-9]+/g, '-'))}`}
-                          className="rounded-full border border-[#001e2c1a] bg-white px-4 py-2 text-xs font-medium text-[#001e2c] transition-colors hover:border-[#fc6736] hover:bg-[#fc673699]/15 hover:text-[#fc6736]"
-                        >
-                          {tag}
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                ) : null}
 
                 {url ? (
-                  <div className="mt-12 flex flex-col items-start gap-4 rounded-2xl border border-[#001e2c1a] bg-[#fafafa] p-8 sm:flex-row sm:items-center sm:justify-between">
-                    <div>
-                      <p className="editable-display text-xl font-bold tracking-[-0.02em] text-[#001e2c]">Ready to dive in?</p>
-                      <p className="mt-1 text-sm text-[#535353]">Head to the source and see it for yourself.</p>
-                    </div>
-                    <a
-                      href={url}
-                      target="_blank"
-                      rel="noopener noreferrer nofollow"
-                      className="inline-flex items-center gap-2 rounded-full bg-[#fc6736] px-6 py-3 text-sm font-semibold text-white transition-transform duration-300 hover:-translate-y-0.5"
-                    >
-                      Visit resource <ExternalLink className="h-4 w-4" />
-                    </a>
+                  <div className="mt-12 rounded-2xl border border-[#001e2c1a] bg-[#fafafa] p-8">
+                    <p className="editable-display text-xl font-bold tracking-[-0.02em] text-[#001e2c]">Ready to dive in?</p>
+                    <p className="mt-1 text-sm text-[#535353]">Head to the source and see it for yourself.</p>
+                    <p className="mt-3 text-sm text-[#535353]">{url}</p>
                   </div>
                 ) : null}
               </article>
@@ -254,9 +219,7 @@ export function SocialBookmarkingDetailView({ post, related }: { post: SitePost;
                     <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-[#fc6736]">Same shelf</p>
                     <h2 className="editable-display mt-3 text-[1.75rem] font-bold tracking-[-0.03em] sm:text-[2.5rem]">More in {collection}</h2>
                   </div>
-                  <Link href={taskConfig?.route || '/sbm'} className="group inline-flex items-center gap-2 rounded-full border border-white/20 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:border-[#fc6736] hover:text-[#fc6736]">
-                    Browse all finds <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                  </Link>
+                  <span className="text-sm font-semibold text-white/60">Browse all finds</span>
                 </div>
               </EditableReveal>
               <EditableReveal index={1}>

@@ -160,21 +160,19 @@ export function ProfileDetailView({ post, related }: { post: SitePost; related: 
                       {website ? (
                         <li className="flex items-center gap-3">
                           <Globe className="h-4 w-4 text-[#fc6736]" />
-                          <a href={website} target="_blank" rel="noopener noreferrer nofollow" className="truncate text-[#001e2c] underline-offset-4 hover:underline">
-                            {website.replace(/^https?:\/\//, '')}
-                          </a>
+                          <span className="truncate text-[#001e2c]">{website.replace(/^https?:\/\//, '')}</span>
                         </li>
                       ) : null}
                       {email ? (
                         <li className="flex items-center gap-3">
                           <Mail className="h-4 w-4 text-[#fc6736]" />
-                          <a href={`mailto:${email}`} className="truncate text-[#001e2c] underline-offset-4 hover:underline">{email}</a>
+                          <span className="truncate text-[#001e2c]">{email}</span>
                         </li>
                       ) : null}
                       {phone ? (
                         <li className="flex items-center gap-3">
                           <Phone className="h-4 w-4 text-[#fc6736]" />
-                          <a href={`tel:${phone}`} className="text-[#001e2c] underline-offset-4 hover:underline">{phone}</a>
+                          <span className="text-[#001e2c]">{phone}</span>
                         </li>
                       ) : null}
                     </ul>
@@ -192,12 +190,9 @@ export function ProfileDetailView({ post, related }: { post: SitePost; related: 
                       </a>
                     ) : null}
                     {email ? (
-                      <a
-                        href={`mailto:${email}`}
-                        className="inline-flex items-center gap-2 rounded-full border border-[#001e2c1a] bg-white px-6 py-3 text-sm font-semibold text-[#001e2c] transition-transform duration-300 hover:-translate-y-0.5 hover:border-[#fc6736]"
-                      >
-                        <Mail className="h-4 w-4" /> Get in touch
-                      </a>
+                      <span className="inline-flex items-center gap-2 text-sm text-[#535353]">
+                        <Mail className="h-4 w-4 text-[#fc6736]" /> {email}
+                      </span>
                     ) : null}
                   </div>
                 </div>
@@ -217,9 +212,7 @@ export function ProfileDetailView({ post, related }: { post: SitePost; related: 
                     Shelved by {post.title.split(/\s+/)[0]}
                   </h2>
                 </div>
-                <Link href={taskConfig?.route || '/sbm'} className="group inline-flex items-center gap-2 rounded-full border border-[#001e2c1a] bg-white px-5 py-2.5 text-sm font-semibold text-[#001e2c] transition-colors hover:border-[#fc6736] hover:text-[#fc6736]">
-                  See every find <ExternalLink className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-                </Link>
+                <span className="text-sm font-semibold text-[#535353]">See every find</span>
               </div>
             </EditableReveal>
 
